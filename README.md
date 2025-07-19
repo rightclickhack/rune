@@ -24,9 +24,13 @@ RUNE makes use of several powerful open-source tools to perform its tasks. These
 Special thanks to the following projects:
 
    rdesktop – Used to initiate RDP connections to servers without Network Level Authentication.
+   
    Tesseract OCR – For performing optical character recognition on captured login screens.
+   
    ImageMagick – Utilized for image conversion and analysis (convert, identify).
+   
    Xvfb (X virtual framebuffer) – Enables headless graphical session management.
+   
    x11-utils (xdpyinfo) – Provides utilities to inspect X display properties.
 
 These tools are critical for RUNE’s functionality, and full credit goes to their maintainers and open-source contributors.
