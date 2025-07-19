@@ -23,6 +23,6 @@ Disclaimer:
 
 This tool is intended for ethical and authorized security assessments only. Unauthorized use against systems you do not own or have permission to test is strictly prohibited.
 
-<img width="592" height="370" alt="1" src="https://github.com/user-attachments/assets/9f9752b5-7197-45b1-a05a-78222884e4cc" />
+<img width="592" height="370" alt="1" src="https://github.com/user-attachments/assets/66433f05-2f85-44fb-a73e-d6bc66f4d3d7" />
 
 <img width="684" height="317" alt="2" src="https://github.com/user-attachments/assets/51d08481-2201-4a9a-84c7-653904583839" />
