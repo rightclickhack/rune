@@ -1,4 +1,4 @@
-# RUNE (Remote Desktop Unauthenticated Network Enumerator)
+# RUNE (Remote Username -NLA Enumerator)
 Version 0.9 
 
 <img width="805" height="542" alt="4" src="https://github.com/user-attachments/assets/921d03c9-c164-4080-8954-756ac51c95ad" />
