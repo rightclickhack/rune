@@ -1,6 +1,8 @@
 # RUNE (Remote Desktop Unauthenticated Network Enumerator)
 Version 0.9 
 
+<img width="805" height="542" alt="4" src="https://github.com/user-attachments/assets/921d03c9-c164-4080-8954-756ac51c95ad" />
+
 RUNE is a specialized offensive security and auditing tool designed to evaluate Windows Remote Desktop Protocol (RDP) environments. It automates the discovery of RDP services with Network Level Authentication (NLA) disabled, capturing and analyzing exposed login screens to extract actionable intelligence during penetration testing, red team engagements, or routine security audits.
 
 🚀 Key Features
@@ -67,6 +69,6 @@ Legal Usage: This tool is intended strictly for authorized security auditing, ac
 
 Accuracy: This program is based on OCR (Optical Character Recognition). Always double-check the screenshots in the output folder to manually confirm the results and usernames extracted.
 
-<img width="805" height="542" alt="4" src="https://github.com/user-attachments/assets/921d03c9-c164-4080-8954-756ac51c95ad" />
+
 
 
