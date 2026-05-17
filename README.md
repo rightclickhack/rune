@@ -1,44 +1,81 @@
-# rune
-RUNE - RDP User NLA Exposed 
+RUNE (Remote Desktop Unauthenticated Network Enumerator)
 
-RUNE (RDP User NLA Exposed) is an advanced Python-based tool designed to detect exposed usernames on RDP services that have Network Level Authentication (NLA) disabled.
+Version 0.9 | Developed by Guillermo Pineda
 
-By leveraging rdesktop and OCR techniques, RUNE connects to remote desktop endpoints and extracts visible usernames from the login screen, providing a valuable asset for red teaming, vulnerability assessments, and exposure auditing.
+RUNE is a specialized offensive security and auditing tool designed to evaluate Windows Remote Desktop Protocol (RDP) environments. It automates the discovery of RDP services with Network Level Authentication (NLA) disabled, capturing and analyzing exposed login screens to extract actionable intelligence during penetration testing, red team engagements, or routine security audits.
+🚀 Key Features
 
-Features:
-    Detect RDP endpoints with NLA disabled
-    Extract and list exposed usernames from login screen
-    OCR-based parsing of screen content
-    Auto-retry on black/empty screenshots
-    Filters out default system messages and certificate info
-    Outputs results grouped by IP and hostname
-    
-Usage:
+    Automated NLA Bypass Detection: Scans networks for port 3389 and identifies RDP servers that allow connections without prior Network Level Authentication.
 
-    python3 rune.py <target-ip-range>
+    Headless Screen Capture: Establishes a stealthy, headless RDP session (using Xvfb and rdesktop) to interact with the target and capture the Windows logon screen without spawning visible windows.
 
-Results are saved and printed in a clean format, showing discovered usernames and other useful metadata.
+    OCR Username Extraction: Automatically crops, filters, and enhances the captured screenshots using ImageMagick, then processes them through Tesseract OCR to extract exposed usernames while intelligently filtering out common OS text (e.g., "Administrator", "Password", "Settings").
 
-RUNE makes use of several powerful open-source tools to perform its tasks. These tools are essential for scanning, connecting, capturing, and extracting information from RDP services. If they are not installed on your system, the script will automatically attempt to install them for you.
+    Computer Vision UI Analysis: Employs OpenCV template matching to detect interactive elements on the lock screen. It features spatial validation to accurately distinguish between the Power icon and the Accessibility icon.
 
-Special thanks to the following projects:
+    NTLM Domain Enumeration: When executed with the full scan flag (-f), it leverages Nmap scripts to extract hostname, domain structure, and OS version details from the target.
 
-   rdesktop – Used to initiate RDP connections to servers without Network Level Authentication.
-   
-   Tesseract OCR – For performing optical character recognition on captured login screens.
-   
-   ImageMagick – Utilized for image conversion and analysis (convert, identify).
-   
-   Xvfb (X virtual framebuffer) – Enables headless graphical session management.
-   
-   x11-utils (xdpyinfo) – Provides utilities to inspect X display properties.
+    Auto-Dependency Resolution: Built-in routine to automatically identify and install missing system binaries (via apt) and Python libraries.
 
-These tools are critical for RUNE’s functionality, and full credit goes to their maintainers and open-source contributors.
+🛠️ Prerequisites
 
-Disclaimer:
+RUNE requires a Linux environment (preferably Debian/Ubuntu-based like Kali Linux or Parrot OS). The script includes an auto-installer feature, but the underlying dependencies are:
 
-This tool is intended for ethical and authorized security assessments only. Unauthorized use against systems you do not own or have permission to test is strictly prohibited.
+System Binaries:
 
-<img width="592" height="370" alt="1" src="https://github.com/user-attachments/assets/66433f05-2f85-44fb-a73e-d6bc66f4d3d7" />
+    nmap
 
-<img width="684" height="317" alt="2" src="https://github.com/user-attachments/assets/51d08481-2201-4a9a-84c7-653904583839" />
+    rdesktop
+
+    tesseract-ocr
+
+    imagemagick
+
+    xvfb
+
+    xterm
+
+Python 3 Libraries:
+
+    colorama
+
+    opencv-python (cv2)
+
+    numpy
+
+💻 Usage
+
+Run the script with Python 3 and provide a target IP or CIDR range.
+Bash
+
+# Basic scan
+python3 rune_v2.py 192.168.1.0/24
+
+# Auto-accept dependency installation
+python3 rune_v2.py 192.168.1.0/24 -y
+
+# Full scan (Includes NTLM info enumeration)
+python3 rune_v2.py 192.168.1.0/24 -f
+
+# Specify a custom output directory
+python3 rune_v2.py 192.168.1.0/24 -o /path/to/custom/folder
+
+Output Structure
+
+RUNE generates an output directory (default: output/) containing:
+
+    raw/: The original unedited screenshots of the vulnerable RDP sessions.
+
+    enhanced/: Temporary processed images optimized for OCR (cleaned up after execution).
+
+    power_template.png & access_template.png: Reference templates decoded at runtime for Computer Vision analysis.
+
+⚠️ Disclaimer
+
+Legal Usage: This tool is intended strictly for authorized security auditing, academic research, and lawful penetration testing. Do not use this tool against networks or systems for which you do not have explicit, written permission.
+
+Accuracy: This program is based on OCR (Optical Character Recognition). Always double-check the screenshots in the output folder to manually confirm the results and usernames extracted.
+
+<img width="805" height="542" alt="4" src="https://github.com/user-attachments/assets/921d03c9-c164-4080-8954-756ac51c95ad" />
+
+
