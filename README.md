@@ -1,21 +1,21 @@
-RUNE (Remote Desktop Unauthenticated Network Enumerator)
-
-Version 0.9 | Developed by Guillermo Pineda
+# RUNE (Remote Desktop Unauthenticated Network Enumerator)
+Version 0.9 
 
 RUNE is a specialized offensive security and auditing tool designed to evaluate Windows Remote Desktop Protocol (RDP) environments. It automates the discovery of RDP services with Network Level Authentication (NLA) disabled, capturing and analyzing exposed login screens to extract actionable intelligence during penetration testing, red team engagements, or routine security audits.
+
 🚀 Key Features
 
-    Automated NLA Bypass Detection: Scans networks for port 3389 and identifies RDP servers that allow connections without prior Network Level Authentication.
+Automated NLA Bypass Detection: Scans networks for port 3389 and identifies RDP servers that allow connections without prior Network Level Authentication.
 
-    Headless Screen Capture: Establishes a stealthy, headless RDP session (using Xvfb and rdesktop) to interact with the target and capture the Windows logon screen without spawning visible windows.
+Headless Screen Capture: Establishes a stealthy, headless RDP session (using Xvfb and rdesktop) to interact with the target and capture the Windows logon screen without spawning visible windows.
 
-    OCR Username Extraction: Automatically crops, filters, and enhances the captured screenshots using ImageMagick, then processes them through Tesseract OCR to extract exposed usernames while intelligently filtering out common OS text (e.g., "Administrator", "Password", "Settings").
+OCR Username Extraction: Automatically crops, filters, and enhances the captured screenshots using ImageMagick, then processes them through Tesseract OCR to extract exposed usernames while intelligently filtering out common OS text (e.g., "Administrator", "Password", "Settings").
 
-    Computer Vision UI Analysis: Employs OpenCV template matching to detect interactive elements on the lock screen. It features spatial validation to accurately distinguish between the Power icon and the Accessibility icon.
+Computer Vision UI Analysis: Employs OpenCV template matching to detect interactive elements on the lock screen. It features spatial validation to accurately distinguish between the Power icon and the Accessibility icon.
 
-    NTLM Domain Enumeration: When executed with the full scan flag (-f), it leverages Nmap scripts to extract hostname, domain structure, and OS version details from the target.
+NTLM Domain Enumeration: When executed with the full scan flag (-f), it leverages Nmap scripts to extract hostname, domain structure, and OS version details from the target.
 
-    Auto-Dependency Resolution: Built-in routine to automatically identify and install missing system binaries (via apt) and Python libraries.
+Auto-Dependency Resolution: Built-in routine to automatically identify and install missing system binaries (via apt) and Python libraries.
 
 🛠️ Prerequisites
 
@@ -43,32 +43,23 @@ Python 3 Libraries:
 
     numpy
 
-💻 Usage
+# Usage
 
 Run the script with Python 3 and provide a target IP or CIDR range.
 Bash
 
-# Basic scan
+Basic scan
 python3 rune_v2.py 192.168.1.0/24
 
-# Auto-accept dependency installation
+Auto-accept dependency installation
 python3 rune_v2.py 192.168.1.0/24 -y
 
-# Full scan (Includes NTLM info enumeration)
+Full scan (Includes NTLM info enumeration)
 python3 rune_v2.py 192.168.1.0/24 -f
 
-# Specify a custom output directory
+Specify a custom output directory
 python3 rune_v2.py 192.168.1.0/24 -o /path/to/custom/folder
 
-Output Structure
-
-RUNE generates an output directory (default: output/) containing:
-
-    raw/: The original unedited screenshots of the vulnerable RDP sessions.
-
-    enhanced/: Temporary processed images optimized for OCR (cleaned up after execution).
-
-    power_template.png & access_template.png: Reference templates decoded at runtime for Computer Vision analysis.
 
 ⚠️ Disclaimer
 
